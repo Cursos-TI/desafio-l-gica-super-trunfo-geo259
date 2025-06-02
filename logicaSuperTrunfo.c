@@ -1,43 +1,67 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
-
+int main(){
+    printf("Super Trunfo!\n")
+}
+struct Cidade {
+    char nome[50];
+    int populacao;    // em habitantes
+    float area;       // em km²
+    float pib;        // em bilhões de reais
+};
 int main() {
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Você pode utilizar o código do primeiro desafio
+    // Definindo as cartas fixas
+    struct Cidade saoPaulo = {"São Paulo", 12300000, 1521.0, 799.0};
+    struct Cidade brasilia = {"Brasília", 3100000, 5802.0, 289.0};
 
-    
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    // utilize o código do primeiro desafio
+    // Pontuação inicial
+    int pontosSP = 0;
+    int pontosBSB = 0;
 
-    // Exemplo:
-    // printf("Digite o código da cidade: ");
-    // scanf("%s", codigo);
-    // 
-    // (Repita para cada propriedade)
+    printf("--- Cartas em jogo ---\n");
+    printf("Cidade 1: %s\n", saoPaulo.nome);
+    printf("Cidade 2: %s\n", brasilia.nome);
 
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
-
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
-
-    // Exibição dos Resultados:
-    // Após realizar as comparações, exiba os resultados para o usuário.
-    // Certifique-se de que o sistema mostre claramente qual carta venceu e com base em qual atributo.
-
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
+    printf("\n--- Comparação das Cidades ---\n");
+// Comparação por população
+    if (saoPaulo.populacao > brasilia.populacao) {
+        printf("População: %s vence\n", saoPaulo.nome);
+        pontosSP++;
+    } else if (saoPaulo.populacao < brasilia.populacao) {
+        printf("População: %s vence\n", brasilia.nome);
+        pontosBSB++;
+    } else {
+        printf("População: Empate\n");
+    }
+    // Comparação por área
+    if (saoPaulo.area > brasilia.area) {
+        printf("Área: %s vence\n", saoPaulo.nome);
+        pontosSP++;
+    } else if (saoPaulo.area < brasilia.area) {
+        printf("Área: %s vence\n", brasilia.nome);
+        pontosBSB++;
+    } else {
+        printf("Área: Empate\n");
+    }
+     // Comparação por PIB
+    if (saoPaulo.pib > brasilia.pib) {
+        printf("PIB: %s vence\n", saoPaulo.nome);
+        pontosSP++;
+    } else if (saoPaulo.pib < brasilia.pib) {
+        printf("PIB: %s vence\n", brasilia.nome);
+        pontosBSB++;
+    } else {
+        printf("PIB: Empate\n");
+    }
+    // Resultado final
+    printf("\n--- Resultado Final ---\n");
+    if (pontosSP > pontosBSB) {
+        printf("A cidade vencedora é: %s 🏆\n", saoPaulo.nome);
+    } else if (pontosBSB > pontosSP) {
+        printf("A cidade vencedora é: %s 🏆\n", brasilia.nome);
+    } else {
+        printf("Empate geral! As cidades são igualmente poderosas! ⚔️\n");
+    }
 
     return 0;
 }
