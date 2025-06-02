@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    printf("Super Trunfo!\n")
+    printf("Super trunfo!\n");
+    return 0;
 }
 struct Cidade {
     char nome[50];
