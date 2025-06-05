@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[30];
+    int ataque;
+    int defesa;
+    int magia;
+} Carta;
+
+// Função para comparar um atributo individual
+void compararAtributo(const char *atributo, int val1, int val2, const char *nome1, const char *nome2) {
+    printf("\n--- Comparando %s ---\n", atributo);
+    if (val1 > val2) {
+        printf("%s venceu com %s maior!\n", nome1, atributo);
+    } else if (val2 > val1) {
+        printf("%s venceu com %s maior!\n", nome2, atributo);
+    } else {
+        printf("Empate no atributo %s!\n", atributo);
+    }
+}
+
+// Função de comparação aninhada entre todos os atributos
+void compararAninhado(Carta c1, Carta c2) {
+    int pontos1 = 0, pontos2 = 0;
+
+    if (c1.ataque > c2.ataque) pontos1++;
+    else if (c2.ataque > c1.ataque) pontos2++;
+
+    if (c1.defesa > c2.defesa) pontos1++;
+    else if (c2.defesa > c1.defesa) pontos2++;
+
+    if (c1.magia > c2.magia) pontos1++;
+    else if (c2.magia > c1.magia) pontos2++;
+
+    printf("\n--- Comparação Aninhada ---\n");
+    if (pontos1 > pontos2) {
+        printf("%s venceu com %d atributos superiores!\n", c1.nome, pontos1);
+    } else if (pontos2 > pontos1) {
+        printf("%s venceu com %d atributos superiores!\n", c2.nome, pontos2);
+    } else {
+        printf("Empate técnico! Cada um brilhou em um atributo diferente.\n");
+    }
+}
+
+// Menu interativo
+void menu(Carta c1, Carta c2) {
+    int opcao;
+
+    do {
+        printf("\n=== MENU DE COMPARAÇÃO ===\n");
+        printf("1 - Comparar Ataque\n");
+        printf("2 - Comparar Defesa\n");
+        printf("3 - Comparar Magia\n");
+        printf("4 - Comparação Aninhada (geral)\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                compararAtributo("Ataque", c1.ataque, c2.ataque, c1.nome, c2.nome);
+                break;
+            case 2:
+                compararAtributo("Defesa", c1.defesa, c2.defesa, c1.nome, c2.nome);
+                break;
+            case 3:
+                compararAtributo("Magia", c1.magia, c2.magia, c1.nome, c2.nome);
+                break;
+            case 4:
+                compararAninhado(c1, c2);
+                break;
+            case 0:
+                printf("Saindo do sistema...\n");
+                break;
+            default:
+                printf("Opção inválida! Tente de novo.\n");
+        }
+    } while (opcao != 0);
+}
+
+int main() {
+    // Cartas já preenchidas
+    Carta carta1 = {"Dragao_Flamejante", 90, 60, 40};
+    Carta carta2 = {"Elfa_Sombria", 65, 70, 85};
+
+    printf("=== Batalha de Cartas Pré-definidas ===\n");
+    printf("Carta 1: %s | Ataque: %d | Defesa: %d | Magia: %d\n",
+           carta1.nome, carta1.ataque, carta1.defesa, carta1.magia);
+    printf("Carta 2: %s | Ataque: %d | Defesa: %d | Magia: %d\n",
+           carta2.nome, carta2.ataque, carta2.defesa, carta2.magia);
+
+    menu(carta1, carta2);
+
+    return 0;
+}
